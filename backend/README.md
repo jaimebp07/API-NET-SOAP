@@ -69,5 +69,6 @@ dotnet build
 ```bash
 dotnet run --project WebHost/WebHost.csproj
 ```
-- Acceder a http://localhost:5175/api/client/balance.
+- Respuesta en JSON: http://localhost:5175/api/client/balance.
+- Respuesta XML: Service.svc?wsdl
 
