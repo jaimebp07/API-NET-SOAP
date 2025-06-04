@@ -6,6 +6,7 @@ namespace WebHost.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Produces("application/xml")]
     public class ClientController : ControllerBase
     {
         private readonly IClientService _clientService;
@@ -18,10 +19,11 @@ namespace WebHost.Controllers
         }
 
         [HttpGet("balance")]
-        public IActionResult GetClientBalance()
+        public ActionResult GetClientBalance()
         {
             var xml = _soapClient.GetSoapResponse();
             var client = _clientService.GetClientFromSoapXml(xml);
+
             return Ok(client);
         }
     }

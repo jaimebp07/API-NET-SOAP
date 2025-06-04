@@ -4,7 +4,9 @@ namespace Domain.ValueObjects
     {
         private const int MaxDigits = 15;
 
-        public decimal Value { get; private set; }
+        public decimal Value { get; set; }
+
+        public Balance() { }
 
         public Balance(decimal value)
         {
@@ -13,6 +15,5 @@ namespace Domain.ValueObjects
 
             Value = value;
         }
-        
     }
 }

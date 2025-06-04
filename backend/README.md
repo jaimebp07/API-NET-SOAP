@@ -8,7 +8,7 @@ Está desarrollado con **.NET 9 (versión 9.0.300)** utilizando el enfoque de **
 
 ## 🔧 Tecnologías y herramientas
 
-- **.NET SDK**: 9.0.300
+- **.NET SDK**: 7.0.410
 - **C#**: Lenguaje principal
 - **SOAP**: Servicio externo de consulta de saldo
 - **REST API**: Exposición de datos
@@ -69,6 +69,8 @@ dotnet build
 ```bash
 dotnet run --project WebHost/WebHost.csproj
 ```
-- Respuesta en JSON: http://localhost:5175/api/client/balance.
-- Respuesta XML: Service.svc?wsdl
 
+- Acceda a http://localhost:5175/api/client/balance
+
+## 📝 Ver el archivo WSDL
+- Acceda a http://localhost:5175/Service.svc?wsdl

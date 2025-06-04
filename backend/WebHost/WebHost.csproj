@@ -6,11 +6,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SoapCore" Version="1.2.1.8" />
+    <PackageReference Include="SoapCore" Version="1.1.0" />
   </ItemGroup>
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
