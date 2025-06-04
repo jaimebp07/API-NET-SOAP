@@ -5,7 +5,7 @@ namespace Infrastructure.Soap
         public string GetSoapResponse()
         {
             // Dummy XML response for testing
-            return @"<Client><CustomerName>Pepito Perez</CustomerName><TotalBalance>123456.78</TotalBalance><AccountStatus>Active</AccountStatus></Client>";
+            return @"<Client><CustomerName>Pepito Perez</CustomerName><TotalBalance>1234567890123456</TotalBalance><AccountStatus>Active</AccountStatus></Client>";
         }
     }
 }

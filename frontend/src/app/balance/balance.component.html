@@ -1,0 +1,9 @@
+<div *ngIf="error" class="error">
+  {{ error }}
+</div>
+
+<div *ngIf="!error">
+  <p><strong>Nombre del Cliente:</strong> {{ customerName }}</p>
+  <p><strong>Saldo Total:</strong> {{ totalBalance }}</p>
+  <p><strong>Estado de la Cuenta:</strong> {{ accountStatus }}</p>
+</div>

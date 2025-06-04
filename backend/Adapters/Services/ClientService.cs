@@ -14,14 +14,22 @@ namespace Adapters.Services
             var balanceRaw = doc.Descendants("TotalBalance").FirstOrDefault()?.Value;
             var status = doc.Descendants("AccountStatus").FirstOrDefault()?.Value;
 
+            var digitsOnly = new string(balanceRaw?.Where(char.IsDigit).ToArray());
+
+            if (string.IsNullOrEmpty(digitsOnly))
+                throw new FormatException("TotalBalance está vacío o mal formado.");
+
+            if (digitsOnly.Length > 15)
+                throw new InvalidOperationException("TotalBalance excede los 15 dígitos permitidos.");
+
             if (!decimal.TryParse(balanceRaw, out var balanceValue))
-                throw new FormatException("Invalid balance format");
+                throw new FormatException("Formato inválido en TotalBalance.");
 
             return new Client
             {
-                CustomerName = name,
+                CustomerName = name ?? "N/A",
                 TotalBalance = new Balance(balanceValue),
-                AccountStatus = status
+                AccountStatus = status ?? "Unknown"
             };
         }
     }

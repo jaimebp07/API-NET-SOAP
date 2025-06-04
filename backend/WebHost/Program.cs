@@ -7,6 +7,16 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularClient", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 builder.Services.AddControllers().AddXmlSerializerFormatters();
 
 builder.Services.AddScoped<IClientService, ClientService>();
@@ -16,6 +26,8 @@ builder.Services.AddSingleton<SoapClient>();
 var app = builder.Build();
 
 app.UseRouting();
+
+app.UseCors("AllowAngularClient");
 
 var binding = new CustomBinding(
     new TextMessageEncodingBindingElement(MessageVersion.Soap11, Encoding.UTF8),
