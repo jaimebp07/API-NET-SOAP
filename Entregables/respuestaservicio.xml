@@ -1,0 +1,9 @@
+<Client
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <CustomerName>Pepito Perez</CustomerName>
+    <TotalBalance>
+        <Value>123456789</Value>
+    </TotalBalance>
+    <AccountStatus>Active</AccountStatus>
+</Client>

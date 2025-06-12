@@ -1,0 +1,72 @@
+<wsdl:definitions
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://tempuri.org/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:http="http://schemas.microsoft.com/ws/06/2004/policy/http"
+    xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract"
+    xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy"
+    xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd"
+    xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://tempuri.org/" name="IClientSoapService">
+    <wsdl:types>
+        <xsd:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+            <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays"/>
+            <xsd:import namespace="http://schemas.datacontract.org/2004/07/System"/>
+            <xsd:element name="GetClientData">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="clientId" type="xsd:string"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="GetClientDataResponse">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element minOccurs="0" maxOccurs="1" name="GetClientDataResult" type="tns:Client"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:complexType name="Client">
+                <xsd:sequence>
+                    <xsd:element minOccurs="0" maxOccurs="1" name="CustomerName" type="xsd:string"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" name="TotalBalance" type="tns:Balance"/>
+                    <xsd:element minOccurs="0" maxOccurs="1" name="AccountStatus" type="xsd:string"/>
+                </xsd:sequence>
+            </xsd:complexType>
+            <xsd:complexType name="Balance">
+                <xsd:sequence>
+                    <xsd:element minOccurs="1" maxOccurs="1" name="Value" type="xsd:decimal"/>
+                </xsd:sequence>
+            </xsd:complexType>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="IClientSoapService_GetClientData_InputMessage">
+        <wsdl:part name="parameters" element="tns:GetClientData"/>
+    </wsdl:message>
+    <wsdl:message name="IClientSoapService_GetClientData_OutputMessage">
+        <wsdl:part name="parameters" element="tns:GetClientDataResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="IClientSoapService">
+        <wsdl:operation name="GetClientData">
+            <wsdl:input message="tns:IClientSoapService_GetClientData_InputMessage"/>
+            <wsdl:output message="tns:IClientSoapService_GetClientData_OutputMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="CustomBinding" type="tns:IClientSoapService">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="GetClientData">
+            <soap:operation soapAction="http://tempuri.org/IClientSoapService/GetClientData" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="IClientSoapService">
+        <wsdl:port name="CustomBinding" binding="tns:CustomBinding">
+            <soap:address location="http://localhost:5175/Service.svc"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
